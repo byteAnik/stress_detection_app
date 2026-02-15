@@ -83,25 +83,25 @@ class CommonButton extends StatelessWidget {
 
     return SizedBox(
       width: double.infinity,
-      height: height ?? 48.h,
+      height: height ?? 55.h,
       child: isOutlined
           ? OutlinedButton(
               onPressed: onPressed,
               style: OutlinedButton.styleFrom(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(borderRadius ?? 12.r),
+                  borderRadius: BorderRadius.circular(borderRadius ?? 28.r),
                 ),
-                side: BorderSide(color: borderColor ?? AppColors.c341539),
+                side: BorderSide(color: borderColor ?? AppColors.c4ECDC4),
               ),
               child: buttonContent,
             )
           : ElevatedButton(
               onPressed: onPressed,
               style: ElevatedButton.styleFrom(
-                backgroundColor: backgroundColor ?? AppColors.c341539,
-                elevation: 0,
+                backgroundColor: backgroundColor ?? AppColors.c4ECDC4,
+                elevation: 4,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(borderRadius ?? 12.r),
+                  borderRadius: BorderRadius.circular(borderRadius ?? 28.r),
                 ),
               ),
               child: buttonContent,
