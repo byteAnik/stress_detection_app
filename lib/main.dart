@@ -12,6 +12,7 @@ import 'package:stress_detection_app/helpers/helper_methods.dart';
 import 'package:stress_detection_app/helpers/navigation_service.dart';
 import 'package:stress_detection_app/helpers/register_provider.dart';
 import 'package:stress_detection_app/networks/dio/dio.dart';
+import 'package:stress_detection_app/features/onboarding_screen.dart';
 import 'package:stress_detection_app/splash_screen.dart';
 
 
@@ -78,7 +79,7 @@ class UtillScreenMobile extends StatelessWidget {
             return MediaQuery(data: MediaQuery.of(context), child: widget!);
           },
           navigatorKey: NavigationService.navigatorKey,
-          home: LoginScreen(),
+          home: SplashScreen(),
         );
       },
     );
