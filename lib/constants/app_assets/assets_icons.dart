@@ -2,88 +2,17 @@ class AssetsIcons {
   AssetsIcons._();
   static String calender = 'assets/icons/calender_icon.svg';
   static String arrow = 'assets/icons/arrow_icon.svg';
-  static String flagImage = 'assets/icons/flag_image1.svg';
-  static String flagImage2 = 'assets/icons/flag_image2.svg';
-  static String lockIcon = 'assets/icons/lock_icon.svg';
-  static String googleIcon = 'assets/icons/google_icon.svg';
-  static String appleIcon = 'assets/icons/apple_icon.svg';
-  static String maleIcon = 'assets/icons/male_icon.svg';
-  static String femaleIcon = 'assets/icons/female_icon.svg';
-  static String likeIcon = 'assets/icons/like_icon.svg';
-  static String unlikeIcon = 'assets/icons/unlike_icon.svg';
-  static String messageIcon = 'assets/icons/message_icon.svg';
-  static String coinIcon = 'assets/icons/coinIcon.svg';
-  static String pauseIcon = 'assets/icons/pause_icon.svg';
-  static String searchIcon = 'assets/icons/search_icon.svg';
-  static String arrowLeftIcon = 'assets/icons/arrow_left_icon.svg';
-  static String sendIcon = 'assets/icons/send_icon.svg';
-  static String favoriteIcon = 'assets/icons/favorite_icon.svg';
+  static String brainIcon = 'assets/icons/brain_icon.png';
+  static String heartIcon = 'assets/icons/heart_icon.png';
+  static String shieldIcon = 'assets/icons/shield_icon.png';
+  static String lightIcon = 'assets/icons/light_icon.png';
 
 
-static String homeIcon = 'assets/icons/home_icon.png';
-static String searchIcon1 = 'assets/icons/search_icon1.png';
-static String textIcon = 'assets/icons/text_icon.png';
-static String giftIcon = 'assets/icons/gift_icon.png';
-static String replaceIcon = 'assets/icons/replace_icon.png';
-static String languageIcon = 'assets/icons/language_icon.png';
-static String beginPersonIcon = 'assets/icons/begin_person_icon.png';
-static String monitizationIcon = 'assets/icons/monitization_icon.png';
-static String sequrityIcon = 'assets/icons/sequrity_icon.png';
-static String notificationIcon = 'assets/icons/notification_icon.png';
-static String trophyIcon = 'assets/icons/trophy_icon.png';
-static String eyeIcon = 'assets/icons/eye_icon.png';
-static String galleryIcon= 'assets/icons/gallery_icon.png';
-static String editIcon= 'assets/icons/edit_icon.png';
-static String uploadIcon= 'assets/icons/upload_icon.png';
-static String galleryIcon2= 'assets/icons/gallery_icon2.png';
-static String threeDotIcon= 'assets/icons/three_dot_icon.png';
-static String requestPayoutIcon= 'assets/icons/request_payout_icon.png';
-static String monitizationCoinIcon= 'assets/icons/monitization_coin_icon.png';
-static String giftIcon1= 'assets/icons/gift_icon_1.png';
-static String videoIcon= 'assets/icons/video_icon.png';
-static String silverIcon= 'assets/icons/silver_icon.png';
-static String profileLocationIcon= 'assets/icons/profile_location_icon.png';
-static String notificationCoinIcon  = 'assets/icons/notification_coin_icon.png';
-static String notificationMessageIcon  = 'assets/icons/notification_message_icon.png';
-static String notificationIcon1  = 'assets/icons/notification_icon1.png';
-static String homeScreenSettingIcon  = 'assets/icons/home_screen_setting_icon.png';
-static String vaultIcon  = 'assets/icons/vault_icon.png';
-static String personIcon  = 'assets/icons/person_icon.png';
-static String homeIcon1  = 'assets/icons/home_icon1.png';
-static String crossIcon  = 'assets/icons/cross_icon.png';
-static String sendIcon1  = 'assets/icons/send_icon1.png';
-static String dislikeIcon  = 'assets/icons/dislike_icon.png';
-static String coinIcon1  = 'assets/icons/coin_icon1.png';
-static String packageCoin  = 'assets/icons/package_coin.png';
-static String editPenIcon  = 'assets/icons/edit_pen_icon.png';
-static String videoIcon1  = 'assets/icons/video_icon1.png';
-static String starIcon  = 'assets/icons/star_icon.png';
-static String vertIcon  = 'assets/icons/vert_icon.png';
-static String viewIcon  = 'assets/icons/view_icon.png';
-static String imageIcon  = 'assets/icons/image_icon.png';
-static String playIcon  = 'assets/icons/play_icon.png';
-static String addIcon  = 'assets/icons/add_icon.png';
 
-static String supportIcon  = 'assets/icons/support_icon.png';
-static String legalIcon  = 'assets/icons/legal_icon.png';
-static String removeIcon  = 'assets/icons/remove_icon.png';
-static String privacyIcon  = 'assets/icons/privacy_icon.png';
-static String policyIcon  = 'assets/icons/policy_icon.png';
-static String dataOverviewIcon  = 'assets/icons/data_overview_icon.png';
-static String activityIcon  = 'assets/icons/activity_icon.png';
-static String phoneIcon  = 'assets/icons/phone_icon.png';
-static String detectionIcon  = 'assets/icons/detection_icon.png';
-static String secqurityIcon1  = 'assets/icons/secqurity_icon1.png';
-static String factorIcon  = 'assets/icons/factor_icon.png';
-static String blockUserIcon  = 'assets/icons/block_user_icon.png';
-static String unfollowIcon  = 'assets/icons/unfollow_icon.png';
-static String muteIcon  = 'assets/icons/mute_icon.png';
-static String reportIcon  = 'assets/icons/report_icon.png';
-static String copyIcon  = 'assets/icons/copy_icon.png';
-static String blockUser1  = 'assets/icons/block_user_icon1.png';
-static String turnIcon  = 'assets/icons/turn_icon.png';
-static String privacyPolicyIcon  = 'assets/icons/privacy_policy_icon.png';
-static String deleteIcon  = 'assets/icons/delete_icon.png';
+
+
+
+
   // SVG ASSETS
   // static String logo = 'assets/icons/nomomedLogo.png';
   // static String logoName = 'assets/icons/NomoMedL.png';

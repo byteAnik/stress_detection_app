@@ -1,11 +1,11 @@
-import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:get/instance_manager.dart';
-import 'package:stress_detection_app/onboarding_screen.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/route_manager.dart';
+import 'package:stress_detection_app/constants/app_colors.dart';
+import 'package:stress_detection_app/features/onboarding_screen.dart';
+import 'package:stress_detection_app/helpers/ui_helpers.dart';
 // Example HomeScreen
-
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,53 +16,78 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
-  void initState() {
-    super.initState();
-    
-    // Timer inside initState
-    Timer( Duration(seconds: 3), () {
-      Get.to(()=>OnboardingScreen());
-    });
-  }
+void initState() {
+  super.initState();
+
+  Future.delayed(const Duration(seconds: 3), () {
+    // 🔥 3 sec পরে execute হবে
+
+    Get.to(()=>OnboardingScreen());
+  });
+}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Color(0xFF667eea), Color(0xFF764ba2)],
+      backgroundColor: AppColors.c0B0B0F,
+      body: Center(
+        child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          decoration: BoxDecoration(
+            gradient: RadialGradient(
+              center: Alignment.center,
+              radius: 0.6,
+              colors: [AppColors.c2A120D, AppColors.c0B0B0F],
+            ),
           ),
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              CircleAvatar(
-                radius: 50,
-                backgroundColor: Colors.white,
-                child: Text('🧠', style: TextStyle(fontSize: 50)),
-              ),
-              SizedBox(height: 30),
-              Text(
-                'MindCare',
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 90.h,
+                  width: 90.h,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: RadialGradient(
+                      colors: [AppColors.cFF6A3D, AppColors.c8B2C1E],
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.cFF6A3D.withOpacity(0.5),
+                        blurRadius: 40,
+                        spreadRadius: 5,
+                      ),
+                    ],
+                  ),
+                  child: const Center(
+                    child: Icon(
+                      Icons.show_chart, // 🔥 waveform icon
+                      color: Colors.white,
+                      size: 40,
+                    ),
+                  ),
                 ),
-              ),
-              SizedBox(height: 10),
-              Text(
-                'AI-Powered Stress Detection',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.white70,
+                UIHelper.verticalSpace(20.h),
+                Text(
+                  "StressAI",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 26.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-            ],
+                UIHelper.verticalSpace(8.h),
+                Text(
+                  "Your AI Stress Companion",
+                  style: TextStyle(
+                    color: Colors.white.withOpacity(0.6),
+                    fontSize: 14.sp,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

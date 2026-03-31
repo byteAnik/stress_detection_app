@@ -98,10 +98,10 @@ class CommonButton extends StatelessWidget {
           : ElevatedButton(
               onPressed: onPressed,
               style: ElevatedButton.styleFrom(
-                backgroundColor: backgroundColor ?? AppColors.c4ECDC4,
+                backgroundColor: backgroundColor ?? AppColors.cFF5A2C,
                 elevation: 4,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(borderRadius ?? 28.r),
+                  borderRadius: BorderRadius.circular(borderRadius ?? 16.r),
                 ),
               ),
               child: buttonContent,
