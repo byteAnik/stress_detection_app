@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:stress_detection_app/constants/app_colors.dart';
 import 'package:stress_detection_app/constants/custome_theme.dart';
 import 'package:stress_detection_app/features/auth/login/presentation/login_screen.dart';
+import 'package:stress_detection_app/features/auth/signup/presentation/signup_screen.dart';
 import 'package:stress_detection_app/helpers/di.dart';
 import 'package:stress_detection_app/helpers/helper_methods.dart';
 import 'package:stress_detection_app/helpers/navigation_service.dart';
@@ -79,7 +80,7 @@ class UtillScreenMobile extends StatelessWidget {
             return MediaQuery(data: MediaQuery.of(context), child: widget!);
           },
           navigatorKey: NavigationService.navigatorKey,
-          home: SplashScreen(),
+          home: LoginScreen(),
         );
       },
     );

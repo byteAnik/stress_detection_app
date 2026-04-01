@@ -1,220 +1,132 @@
-// signup_screen.dart
-// Complete Sign Up Screen with Email/Password Registration
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stress_detection_app/common_wigdets/common_button.dart';
 import 'package:stress_detection_app/common_wigdets/common_textform_flied.dart';
+import 'package:stress_detection_app/constants/app_assets/assets_icons.dart';
+import 'package:stress_detection_app/constants/app_colors.dart';
 import 'package:stress_detection_app/helpers/ui_helpers.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
-  final _formKey = GlobalKey<FormState>();
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _ageController = TextEditingController();
-  bool _agreeToTerms = false;
-  @override
-  void dispose() {
-    _nameController.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
-    _ageController.dispose();
-    super.dispose();
-  }
+class _SignupScreenState extends State<SignupScreen> {
+  bool isRemember = false;
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.c0B0B0F,
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24),
-          child: Form(
-            key: _formKey,
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: UIHelper.kDefaulutPadding(),
+          ),
+          child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Back Button
-                IconButton(
-                  icon: const Icon(Icons.arrow_back),
-                  onPressed: () => Navigator.pop(context),
-                  padding: EdgeInsets.zero,
-                  constraints: const BoxConstraints(),
-                ),
-
-                const SizedBox(height: 30),
-
-                // Logo
-                Center(
-                  child: Container(
-                    width: 80,
-                    height: 80,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: LinearGradient(
-                        colors: [
-                          const Color(0xFFA7C7E7).withOpacity(0.4),
-                          const Color(0xFF4ECDC4).withOpacity(0.4),
-                        ],
-                      ),
-                    ),
-                    child: const Center(
-                      child: Text('🧠', style: TextStyle(fontSize: 40)),
-                    ),
+                UIHelper.verticalSpace(20.h),
+                Text(
+                  "Create Account",
+                  style: TextStyle(
+                    color: AppColors.cFFFFFF,
+                    fontSize: 26.sp,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-
-                UIHelper.verticalSpace(24.h),
-
-                // Title
-                const Center(
-                  child: Text(
-                    'Create Account',
-                    style: TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF333333),
-                    ),
+                UIHelper.verticalSpace(6.h),
+                Text(
+                  "Join us to start your stress-free journey",
+                  style: TextStyle(
+                    color: AppColors.cFFFFFF.withOpacity(0.6),
+                    fontSize: 13.sp,
                   ),
                 ),
-                UIHelper.verticalSpace(8.h),
-                const Center(
-                  child: Text(
-                    'Join us to start your mental wellness journey',
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Color(0xFF666666),
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-
                 UIHelper.verticalSpace(30.h),
                 CommonTextFormField(
-                  controller: _nameController, 
-                  labelText: 'Full Name', 
-                  hintText: 'Enter your full name'
+                  controller: nameController,
+                  label: 'Full Name',
+                  hintText: 'Anik Biswas',
+                  keyboardType: TextInputType.name,
+                  prefixIcon: Image.asset(
+                    AssetsIcons.personIcon,
+                    height: 16.h,
+                    width: 16.w,
                   ),
-                UIHelper.verticalSpace(20.h),
-                CommonTextFormField(
-                  controller: _emailController, 
-                  labelText: 'Email', 
-                  hintText: 'your@email.com'
-                  ),
-                UIHelper.verticalSpace(20.h),
-                CommonTextFormField(
-                  controller: _passwordController, 
-                  labelText: 'Password', 
-                  hintText: '******',
-                  obscureText: true,
-                  ),
-                UIHelper.verticalSpace(20.h),
-                CommonTextFormField(
-                  controller: _ageController, 
-                  labelText: 'Age (Optional)', 
-                  hintText: 'For personalized insights',
-                  ),
-
-                UIHelper.verticalSpace(24.h),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: 24,
-                      height: 24,
-                      child: Checkbox(
-                        value: _agreeToTerms,
-                        onChanged: (value) {
-                          setState(() {
-                            _agreeToTerms = value ?? false;
-                          });
-                        },
-                        activeColor: const Color(0xFF4ECDC4),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(6),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _agreeToTerms = !_agreeToTerms;
-                          });
-                        },
-                        child: RichText(
-                          text: const TextSpan(
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: Color(0xFF666666),
-                            ),
-                            children: [
-                              TextSpan(text: 'I agree to the '),
-                              TextSpan(
-                                text: 'Terms',
-                                style: TextStyle(
-                                  color: Color(0xFF4ECDC4),
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              TextSpan(text: ' & '),
-                              TextSpan(
-                                text: 'Privacy Policy',
-                                style: TextStyle(
-                                  color: Color(0xFF4ECDC4),
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
                 ),
-
-                UIHelper.verticalSpace(30.h),
-
-                // Sign Up Button
+                UIHelper.verticalSpace(20.h),
+                CommonTextFormField(
+                  controller: emailController,
+                  label: 'Email',
+                  hintText: 'Enter your email',
+                  keyboardType: TextInputType.name,
+                  prefixIcon: Image.asset(
+                    AssetsIcons.emailIcon,
+                    height: 16.h,
+                    width: 16.w,
+                  ),
+                ),
+                UIHelper.verticalSpace(20.h),
+                CommonTextFormField(
+                  controller: passwordController,
+                  label: 'Password',
+                  hintText: 'Create password',
+                  keyboardType: TextInputType.visiblePassword, 
+                  isPassword: true,
+                  prefixIcon: Image.asset(
+                    AssetsIcons.lockIcon,
+                    height: 16.h,
+                    width: 16.w,
+                  ),
+                ),
+                UIHelper.verticalSpace(20.h),
+                CommonTextFormField(
+                  controller: confirmPasswordController,
+                  label: 'Confirm Password',
+                  hintText: 'Confirm your password',
+                  keyboardType: TextInputType.visiblePassword, 
+                  isPassword: true,
+                  prefixIcon: Image.asset(
+                    AssetsIcons.lockIcon,
+                    height: 16.h,
+                    width: 16.w,
+                  ),
+                ),
+                UIHelper.verticalSpace(20.h),
                 CommonButton(
                   text: 'Sign Up', 
                   onPressed: (){
 
                   }
                   ),
-
-                UIHelper.verticalSpace(24.h),
-
-                // Login Link
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Already have an account? ',
-                      style: TextStyle(color: Color(0xFF666666)),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                      
-                      },
-                      child: const Text(
-                        'Log In',
-                        style: TextStyle(
-                          color: Color(0xFF4ECDC4),
-                          fontWeight: FontWeight.w600,
-                        ),
+                UIHelper.verticalSpace(60.h),
+                Center(
+                  child: RichText(
+                    text: TextSpan(
+                      text: "Already have an account? ",
+                      style: TextStyle(
+                        color: AppColors.cFFFFFF.withOpacity(0.6),
+                        fontSize: 12.sp,
                       ),
+                      children:  [
+                        TextSpan(
+                          text: "Sign In",
+                          style: TextStyle(color: AppColors.cFF5A2C),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ),  
               ],
             ),
           ),
