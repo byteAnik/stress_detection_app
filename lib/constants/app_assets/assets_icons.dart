@@ -6,6 +6,9 @@ class AssetsIcons {
   static String heartIcon = 'assets/icons/heart_icon.png';
   static String shieldIcon = 'assets/icons/shield_icon.png';
   static String lightIcon = 'assets/icons/light_icon.png';
+  static String emailIcon = 'assets/icons/email_icon.png';
+  static String lockIcon = 'assets/icons/lock_icon.png';
+  static String personIcon = 'assets/icons/person_icon.png';
 
 
 

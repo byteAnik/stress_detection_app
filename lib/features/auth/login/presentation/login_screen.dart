@@ -1,12 +1,10 @@
-// login_screen.dart
-// Complete Login Screen with Email/Password and Social Login
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/get_core.dart';
+import 'package:get/route_manager.dart';
+import 'package:get/state_manager.dart';
 import 'package:stress_detection_app/common_wigdets/common_button.dart';
 import 'package:stress_detection_app/common_wigdets/common_textform_flied.dart';
+import 'package:stress_detection_app/constants/app_assets/assets_icons.dart';
 import 'package:stress_detection_app/constants/app_colors.dart';
 import 'package:stress_detection_app/features/auth/signup/presentation/signup_screen.dart';
 import 'package:stress_detection_app/helpers/ui_helpers.dart';
@@ -19,234 +17,212 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final _formKey = GlobalKey<FormState>();
-  final TextEditingController _emailController = TextEditingController(
-    // text: '01305032297',
-  );
-  final TextEditingController _passwordController = TextEditingController(
-    // text: '01305032297',
-  );
-  
+  bool isRemember = false;
 
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.cFFFFFF,
+      backgroundColor: AppColors.c0B0B0F,
+      resizeToAvoidBottomInset: true, // 🔥 keyboard safe
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: UIHelper.kDefaulutPadding()),
-          child: Form(
-            key: _formKey,
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: UIHelper.kDefaulutPadding(),
+          ),
+          child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                UIHelper.verticalSpace(40.h),
-
-                // Logo
-                Center(
-                  child: Container(
-                    width: 90,
-                    height: 90,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: LinearGradient(
-                        colors: [
-                          const Color(0xFFA7C7E7).withOpacity(0.4),
-                          const Color(0xFF4ECDC4).withOpacity(0.4),
-                        ],
-                      ),
-                    ),
-                    child: const Center(
-                      child: Text('🧠', style: TextStyle(fontSize: 45)),
-                    ),
-                  ),
-                ),
-
-                UIHelper.verticalSpace(30.h),
-
-                // Title
-                const Text(
-                  'Welcome Back!',
+                UIHelper.verticalSpace(20.h),
+                Text(
+                  "Welcome Back",
                   style: TextStyle(
-                    fontSize: 28,
+                    color: AppColors.cFFFFFF,
+                    fontSize: 26.sp,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF333333),
                   ),
                 ),
-                UIHelper.verticalSpace(8.h),
-                const Text(
-                  'Log in to continue your wellness journey',
+                UIHelper.verticalSpace(6.h),
+                Text(
+                  "Sign in to continue monitoring your stress.",
                   style: TextStyle(
-                    fontSize: 15,
-                    color: Color(0xFF666666),
+                    color: AppColors.cFFFFFF.withOpacity(0.6),
+                    fontSize: 13.sp,
                   ),
                 ),
-
-                UIHelper.verticalSpace(40.h),
-
-                // Email Field
+                UIHelper.verticalSpace(30.h),
                 CommonTextFormField(
-                  controller: _emailController, 
-                  labelText: 'Email', 
+                  controller: emailController,
+                  label: 'Email or Phone',
                   hintText: 'Enter your email',
-                  
+                  keyboardType: TextInputType.emailAddress,
+                  prefixIcon: Image.asset(
+                    AssetsIcons.emailIcon,
+                    height: 16.h,
+                    width: 16.w,
+                  ),
                 ),
                 UIHelper.verticalSpace(20.h),
                 CommonTextFormField(
-                  controller: _passwordController, 
-                  labelText: 'Password', 
+                  controller: passwordController,
+                  label: 'Password',
                   hintText: 'Enter your password',
-                  obscureText: true,
-                ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () {
-                      
-                    },
-                    child: const Text(
-                      'Forgot Password?',
-                      style: TextStyle(
-                        color: Color(0xFF4ECDC4),
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+                  keyboardType: TextInputType.visiblePassword, 
+                  isPassword: true,
+                  prefixIcon: Image.asset(
+                    AssetsIcons.lockIcon,
+                    height: 16.h,
+                    width: 16.w,
                   ),
                 ),
-
-                UIHelper.verticalSpace(30.h),
-
-                // Login Button
-                CommonButton(
-                  text: 'LogIn', 
-                  onPressed: (){
-                    Get.to(()=>SignUpScreen());
-                  }
-                  ),
-
-                 UIHelper.verticalSpace(30.h),
-
-                // Divider
+                UIHelper.verticalSpace(12.h),
                 Row(
                   children: [
-                    const Expanded(child: Divider(color: Color(0xFFDDDDDD))),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Text(
-                        'or',
-                        style: TextStyle(
-                          color: Colors.grey[600],
-                          fontSize: 13,
-                        ),
-                      ),
-                    ),
-                    const Expanded(child: Divider(color: Color(0xFFDDDDDD))),
-                  ],
-                ),
-
-                UIHelper.verticalSpace(30.h),
-
-                // Google Login
-                SizedBox(
-                  width: double.infinity,
-                  height: 50,
-                  child: OutlinedButton(
-                    onPressed:(){
-
-                    },
-                    style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: Color(0xFFDDDDDD), width: 2),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text('🔍', style: TextStyle(fontSize: 24)),
-                        SizedBox(width: 12),
-                        Text(
-                          'Continue with Google',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFF333333),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-
-                UIHelper.verticalSpace(16.h),
-
-                // Apple Login
-                SizedBox(
-                  width: double.infinity,
-                  height: 50,
-                  child: OutlinedButton(
-                    onPressed:(){
-
-                    },
-                    style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: Color(0xFFDDDDDD), width: 2),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text('🍎', style: TextStyle(fontSize: 24)),
-                        SizedBox(width: 12),
-                        Text(
-                          'Continue with Apple',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFF333333),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-
-                UIHelper.verticalSpace(30.h),
-
-                // Sign Up Link
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "Don't have an account? ",
-                      style: TextStyle(color: Color(0xFF666666)),
-                    ),
                     GestureDetector(
                       onTap: () {
-                      
+                        setState(() {
+                          isRemember = !isRemember;
+                        });
                       },
-                      child: const Text(
-                        'Sign Up',
-                        style: TextStyle(
-                          color: AppColors.c4ECDC4,
-                          fontWeight: FontWeight.w600,
+                      child: Container(
+                        height: 18.h,
+                        width: 18.h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4.r),
+                          border: Border.all(
+                            color:
+                                isRemember
+                                    ? AppColors.cFF5A2C
+                                    : AppColors.cFFFFFF.withOpacity(0.3),
+                          ),
+                          color:
+                              isRemember
+                                  ? AppColors.cFF5A2C
+                                  : Colors.transparent,
                         ),
+                        child:
+                            isRemember
+                                ? const Icon(
+                                  Icons.check,
+                                  size: 12,
+                                  color: AppColors.cFFFFFF,
+                                )
+                                : null,
+                      ),
+                    ),
+                    UIHelper.horizontalSpace(8.w),
+                    Text(
+                      "Remember me",
+                      style: TextStyle(
+                        color: AppColors.cFFFFFF.withOpacity(0.6),
+                        fontSize: 12.sp,
+                      ),
+                    ),
+                    const Spacer(), // ✅ THIS is OK (Row e allowed)
+                    Text(
+                      "Forgot Password?",
+                      style: TextStyle(
+                        color: AppColors.cFF5A2C,
+                        fontSize: 12.sp,
                       ),
                     ),
                   ],
                 ),
+
+                UIHelper.verticalSpace(25.h),
+                CommonButton(
+                  text: 'Sing In', 
+                  onPressed: (){
+
+                  }
+                  ),
+                UIHelper.verticalSpace(25.h),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Divider(color: AppColors.cFFFFFF.withOpacity(0.2)),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10.w),
+                      child: Text(
+                        "OR",
+                        style: TextStyle(
+                          color: AppColors.cFFFFFF.withOpacity(0.5),
+                          fontSize: 11.sp,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Divider(color: AppColors.cFFFFFF.withOpacity(0.2)),
+                    ),
+                  ],
+                ),
+
+                UIHelper.verticalSpace(20.h),
+
+                /// 🔥 Social Buttons
+                Row(
+                  children: [
+                    Expanded(child: _social("Google", Icons.g_mobiledata)),
+                    SizedBox(width: 12.w),
+                    Expanded(child: _social("Apple", Icons.apple)),
+                  ],
+                ),
+
+                /// 🔥 REMOVE Spacer → use fixed space
+                UIHelper.verticalSpace(40.h),
+
+                /// 🔥 Bottom Text
+                GestureDetector(
+                  onTap: (){
+                    Get.to(()=>SignupScreen());
+                  },
+                  child: Center(
+                    child: RichText(
+                      text: TextSpan(
+                        text: "Don't have an account? ",
+                        style: TextStyle(
+                          color: AppColors.cFFFFFF.withOpacity(0.6),
+                          fontSize: 12.sp,
+                        ),
+                        children:  [
+                          TextSpan(
+                            text: "Create Account",
+                            style: TextStyle(color: AppColors.cFF5A2C),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+
+                UIHelper.verticalSpace(20.h),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _social(String text, IconData icon) {
+    return Container(
+      height: 50.h,
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.04),
+        borderRadius: BorderRadius.circular(12.r),
+        border: Border.all(color: Colors.white.withOpacity(0.06)),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon, color: Colors.white, size: 20.sp),
+          SizedBox(width: 6.w),
+          Text(text, style: TextStyle(color: Colors.white, fontSize: 13.sp)),
+        ],
       ),
     );
   }
