@@ -49,5 +49,5 @@ final class NavigationService {
 
   static get goBeBack => navigatorKey.currentState!.canPop();
 
-  static get context => navigatorKey.currentContext;
+  static BuildContext get context => navigatorKey.currentContext!;
 }

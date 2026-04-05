@@ -4,8 +4,6 @@ import 'package:stress_detection_app/constants/app_assets/assets_lottie.dart';
 import 'package:stress_detection_app/helpers/loading_indicators.dart';
 import 'package:stress_detection_app/helpers/navigation_service.dart';
 
-
-
 extension Loader on Future {
   Future<dynamic> waitingForLogin() async {
     showDialog(
@@ -64,9 +62,10 @@ extension Loader on Future {
   Future<dynamic> waitingAddToCart() async {
     showDialog(
       context: NavigationService.context,
-      builder: (context) => Center(
-        child: shimmer(context: context, name: AssetsLotties.dataEmpty),
-      ),
+      builder:
+          (context) => Center(
+            child: shimmer(context: context, name: AssetsLotties.dataEmpty),
+          ),
     );
 
     try {
@@ -86,13 +85,14 @@ extension Loader on Future {
       // ignore: deprecated_member_use
       // barrierColor: AppColors.cF4F4F4.withOpacity(.8),
       context: NavigationService.context,
-      builder: (context) => Center(
-        child: shimmer(
-          context: context,
-          name: AssetsLotties.dataEmpty,
-          size: 120,
-        ),
-      ),
+      builder:
+          (context) => Center(
+            child: shimmer(
+              context: context,
+              name: AssetsLotties.dataEmpty,
+              size: 120,
+            ),
+          ),
     );
 
     try {
@@ -134,11 +134,12 @@ extension Loader on Future {
       if (result) {
         showDialog(
           context: NavigationService.context,
-          builder: (context) => shimmer(
-            context: NavigationService.context,
-            name: AssetsLotties.dataEmpty,
-            size: 120,
-          ),
+          builder:
+              (context) => shimmer(
+                context: NavigationService.context,
+                name: AssetsLotties.dataEmpty,
+                size: 120,
+              ),
         );
         await Future.delayed(const Duration(milliseconds: 800), () {
           NavigationService.goBack;
@@ -156,11 +157,12 @@ extension Loader on Future {
       if (result) {
         showDialog(
           context: NavigationService.context,
-          builder: (context) => shimmer(
-            context: NavigationService.context,
-            name: AssetsLotties.dataEmpty,
-            size: 120,
-          ),
+          builder:
+              (context) => shimmer(
+                context: NavigationService.context,
+                name: AssetsLotties.dataEmpty,
+                size: 120,
+              ),
         );
         await Future.delayed(const Duration(milliseconds: 800), () {
           NavigationService.goBack;
@@ -177,11 +179,12 @@ extension Loader on Future {
       (value) async {
         showDialog(
           context: NavigationService.context,
-          builder: (context) => shimmer(
-            context: NavigationService.context,
-            name: AssetsLotties.dataEmpty,
-            size: 120,
-          ),
+          builder:
+              (context) => shimmer(
+                context: NavigationService.context,
+                name: AssetsLotties.dataEmpty,
+                size: 120,
+              ),
         );
         await Future.delayed(const Duration(milliseconds: 800), () {
           NavigationService.goBack;
