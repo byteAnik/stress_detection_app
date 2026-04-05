@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/state_manager.dart';
 import 'package:stress_detection_app/common_wigdets/common_button.dart';
 import 'package:stress_detection_app/common_wigdets/common_textform_flied.dart';
 import 'package:stress_detection_app/constants/app_assets/assets_icons.dart';
 import 'package:stress_detection_app/constants/app_colors.dart';
+import 'package:stress_detection_app/features/auth/login/presentation/login_screen.dart';
 import 'package:stress_detection_app/helpers/ui_helpers.dart';
 
 class CreatePasswordScreen extends StatelessWidget {
@@ -68,7 +71,7 @@ class CreatePasswordScreen extends StatelessWidget {
                 CommonButton(
                   text: 'Sign In', 
                   onPressed: (){
-
+                    Get.to(()=>LoginScreen());
                   }
                   ),
               ],
