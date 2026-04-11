@@ -95,6 +95,8 @@ dependencies:
   easy_url_launcher: ^0.0.7
   video_thumbnail: ^0.5.6
   percent_indicator: ^4.2.5
+  vibration: ^3.1.8
+  audioplayers: ^6.6.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -122,6 +124,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/audio/
     # - assets/fonts/
   #    - assets/videos/
 

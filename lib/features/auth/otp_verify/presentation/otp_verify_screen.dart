@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/utils.dart';
-import 'package:pin_code_fields/pin_code_fields.dart' hide PinTheme;
 import 'package:pinput/pinput.dart';
 import 'package:stress_detection_app/common_wigdets/common_button.dart';
 import 'package:stress_detection_app/constants/app_colors.dart';
@@ -24,11 +23,11 @@ class OtpVerifyScreen extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-              colors: [
-                Colors.white.withOpacity(0.05),
-                Colors.white.withOpacity(0.02),
-              ],
-            ),
+          colors: [
+            Colors.white.withOpacity(0.05),
+            Colors.white.withOpacity(0.02),
+          ],
+        ),
         borderRadius: BorderRadius.circular(83.r),
         border: Border.all(color: AppColors.cFFFFFF.withOpacity(0.2)),
       ),
@@ -75,10 +74,11 @@ class OtpVerifyScreen extends StatelessWidget {
                 ),
                 UIHelper.verticalSpace(60.h),
                 CommonButton(
-                  text: 'Verify', 
+                  text: 'Verify',
                   onPressed: () {
-                    Get.to(()=>CreatePasswordScreen());
-                  }),
+                    Get.to(() => CreatePasswordScreen());
+                  },
+                ),
               ],
             ),
           ),

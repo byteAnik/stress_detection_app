@@ -6,10 +6,8 @@ import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:stress_detection_app/constants/app_colors.dart';
 import 'package:stress_detection_app/constants/custome_theme.dart';
-import 'package:stress_detection_app/features/auth/create_password/presentation/create_password_screen.dart';
-import 'package:stress_detection_app/features/auth/otp_verify/presentation/otp_verify_screen.dart';
-import 'package:stress_detection_app/features/home/presentation/home_screen.dart';
-import 'package:stress_detection_app/features/monitoring/presentation/monitoring_screen.dart';
+import 'package:stress_detection_app/features/analytics/presentation/analytics_screen.dart';
+import 'package:stress_detection_app/features/breathing/presentation/breathing_screen.dart';
 import 'package:stress_detection_app/helpers/di.dart';
 import 'package:stress_detection_app/helpers/helper_methods.dart';
 import 'package:stress_detection_app/helpers/navigation_service.dart';
@@ -78,7 +76,7 @@ class UtillScreenMobile extends StatelessWidget {
             return MediaQuery(data: MediaQuery.of(context), child: widget!);
           },
           navigatorKey: NavigationService.navigatorKey,
-          home: MonitoringScreen(),
+          home: BreathingScreen(),
         );
       },
     );
