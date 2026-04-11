@@ -14,10 +14,13 @@ final class NavigationService {
   static Future<dynamic> navigateToReplacement(String routeName) =>
       navigatorKey.currentState!.pushReplacementNamed(routeName);
 
-  
-  static Future<dynamic> navigateToReplacementWithObj(String routeName,
-    Object? obj) =>
-      navigatorKey.currentState!.pushReplacementNamed(routeName,arguments: obj);
+  static Future<dynamic> navigateToReplacementWithObj(
+    String routeName,
+    Object? obj,
+  ) => navigatorKey.currentState!.pushReplacementNamed(
+    routeName,
+    arguments: obj,
+  );
 
   static Future<dynamic> navigateToUntilReplacement(String routeName) =>
       navigatorKey.currentState!.pushNamedAndRemoveUntil(
@@ -32,22 +35,19 @@ final class NavigationService {
   static Future<dynamic> navigateToWithArgs(
     String routeName,
     Map<String, dynamic>? map,
-  ) =>
-      navigatorKey.currentState!.pushNamed(routeName, arguments: map);
+  ) => navigatorKey.currentState!.pushNamed(routeName, arguments: map);
 
   static Future<dynamic> popAndReplaceWihArgs(
-          String routeName, Map<String, dynamic>? map) =>
-      navigatorKey.currentState!.popAndPushNamed(routeName, arguments: map);
-
-  static Future<dynamic> navigateToWithObject(
     String routeName,
-    Object? obj,
-  ) =>
+    Map<String, dynamic>? map,
+  ) => navigatorKey.currentState!.popAndPushNamed(routeName, arguments: map);
+
+  static Future<dynamic> navigateToWithObject(String routeName, Object? obj) =>
       navigatorKey.currentState!.pushNamed(routeName, arguments: obj);
 
-  static get goBack => navigatorKey.currentState!.pop();
+  static void get goBack => navigatorKey.currentState!.pop();
 
-  static get goBeBack => navigatorKey.currentState!.canPop();
+  static bool get goBeBack => navigatorKey.currentState!.canPop();
 
   static BuildContext get context => navigatorKey.currentContext!;
 }

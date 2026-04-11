@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/route_manager.dart';
-import 'package:get/state_manager.dart';
 import 'package:stress_detection_app/common_wigdets/common_button.dart';
 import 'package:stress_detection_app/common_wigdets/common_textform_flied.dart';
 import 'package:stress_detection_app/constants/app_assets/assets_icons.dart';
@@ -71,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   controller: passwordController,
                   label: 'Password',
                   hintText: 'Enter your password',
-                  keyboardType: TextInputType.visiblePassword, 
+                  keyboardType: TextInputType.visiblePassword,
                   isPassword: true,
                   prefixIcon: Image.asset(
                     AssetsIcons.lockIcon,
@@ -125,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     const Spacer(), // ✅ THIS is OK (Row e allowed)
                     GestureDetector(
                       onTap: () {
-                        Get.to(()=>OtpVerifyScreen());
+                        Get.to(() => OtpVerifyScreen());
                       },
                       child: Text(
                         "Forgot Password?",
@@ -139,12 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
 
                 UIHelper.verticalSpace(25.h),
-                CommonButton(
-                  text: 'Sing In', 
-                  onPressed: (){
-
-                  }
-                  ),
+                CommonButton(text: 'Sing In', onPressed: () {}),
                 UIHelper.verticalSpace(25.h),
                 Row(
                   children: [
@@ -183,8 +177,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 /// 🔥 Bottom Text
                 GestureDetector(
-                  onTap: (){
-                    Get.to(()=>SignupScreen());
+                  onTap: () {
+                    Get.to(() => SignupScreen());
                   },
                   child: Center(
                     child: RichText(
@@ -194,7 +188,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: AppColors.cFFFFFF.withOpacity(0.6),
                           fontSize: 12.sp,
                         ),
-                        children:  [
+                        children: [
                           TextSpan(
                             text: "Create Account",
                             style: TextStyle(color: AppColors.cFF5A2C),
