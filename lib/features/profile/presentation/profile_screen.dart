@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:stress_detection_app/constants/app_assets/assets_icons.dart';
 import 'package:stress_detection_app/constants/app_colors.dart';
 import 'package:stress_detection_app/helpers/ui_helpers.dart';
 
@@ -264,10 +265,48 @@ class ProfileScreen extends StatelessWidget {
                     },
                   ),
                 ),
-                UIHelper.verticalSpace(40.h),
+                UIHelper.verticalSpace(20.h),
+                Container(
+                  width: double.infinity,
+                  margin: EdgeInsets.symmetric(horizontal: 20.w),
+                  padding: EdgeInsets.symmetric(vertical: 14.h),
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: Colors.red, width: 1),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.logout, color: Colors.red, size: 20.sp),
+                      UIHelper.horizontalSpace(8.w),
+                      Text(
+                        'Log Out',
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                UIHelper.verticalSpace(20.h),
               ],
             ),
           ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.deepOrange,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.r),
+        ),
+        child: Image.asset(
+          AssetsIcons.questionMarkIcon,
+          height: 20.h,
+          width: 20.w,
         ),
       ),
     );
