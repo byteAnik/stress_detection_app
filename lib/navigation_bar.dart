@@ -1,137 +1,200 @@
-// import 'dart:developer';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'dart:developer';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:stress_detection_app/constants/app_assets/assets_icons.dart';
+import 'package:stress_detection_app/constants/app_colors.dart';
+import 'package:stress_detection_app/features/analytics/presentation/analytics_screen.dart';
+import 'package:stress_detection_app/features/breathing/presentation/breathing_screen.dart';
+import 'package:stress_detection_app/features/home/presentation/home_screen.dart';
+import 'package:stress_detection_app/features/monitoring/presentation/monitoring_screen.dart';
+import 'package:stress_detection_app/features/profile/presentation/profile_screen.dart';
+import 'package:stress_detection_app/helpers/helper_methods.dart';
+import 'package:svg_flutter/svg.dart';
 
-// import 'package:svg_flutter/svg.dart';
+class NavigationBarScreen extends StatefulWidget {
+  final int? pageNum;
+  const NavigationBarScreen({super.key, this.pageNum});
 
-// class NavigationBarScreen extends StatefulWidget {
-//   final int? pageNum;
-//   const NavigationBarScreen({super.key, this.pageNum});
+  @override
+  State<NavigationBarScreen> createState() => _NavigationBarScreenState();
+}
 
-//   @override
-//   State<NavigationBarScreen> createState() => _NavigationBarScreenState();
-// }
+class _NavigationBarScreenState extends State<NavigationBarScreen> {
+  late int _currentIndex;
 
-// class _NavigationBarScreenState extends State<NavigationBarScreen> {
-//   late int _currentIndex;
+  final List<Widget> _screens = [
+    HomeScreen(),
+    MonitoringScreen(),
+    AnalyticsScreen(),
+    BreathingScreen(),
+    ProfileScreen(),
+  ];
 
-//   final List<Widget> _screens = [
-//     HomeScreen(),
-//     UserMessageScreen(),
-//     UserPostScreen(),
-//     VaultScreen(),
-//     SettingPageScreen(),
-//   ];
+  @override
+  void initState() {
+    super.initState();
+    _currentIndex = widget.pageNum ?? 0;
+  }
 
-//   @override
-//   void initState() {
-//     super.initState();
-//     _currentIndex = widget.pageNum ?? 0;
-//   }
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      onWillPop: () async {
+        showMaterialDialog(context);
+        return false;
+      },
+      child: Scaffold(
+        backgroundColor: AppColors.c1B1B1B,
+        extendBody: true,
+        body: _screens[_currentIndex],
+        bottomNavigationBar: Container(
+          decoration: BoxDecoration(
+            color: AppColors.c1B1B1B,
+            border: Border(
+              top: BorderSide(
+                color: const Color(0xFF2A2A2A),
+                width: 1,
+              ),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withAlpha((0.18 * 255).toInt()),
+                blurRadius: 16,
+                offset: const Offset(0, -2),
+              ),
+            ],
+          ),
+          child: Theme(
+            data: Theme.of(context).copyWith(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+            ),
+            child: BottomNavigationBar(
+              elevation: 0,
+              backgroundColor: AppColors.c1B1B1B,
+              currentIndex: _currentIndex,
+              onTap: (index) {
+                log("----------------index--$index");
+                setState(() => _currentIndex = index);
+              },
+              type: BottomNavigationBarType.fixed,
+              showSelectedLabels: true,
+              showUnselectedLabels: true,
+              selectedItemColor: const Color(0xFFFF5A1F),
+              unselectedItemColor: const Color(0xFF8B8A8C),
+              selectedFontSize: 12.sp,
+              unselectedFontSize: 12.sp,
+              iconSize: 24.sp,
+              selectedLabelStyle: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 12.sp,
+                height: 1.2,
+              ),
+              unselectedLabelStyle: TextStyle(
+                fontWeight: FontWeight.w400,
+                fontSize: 12.sp,
+                height: 1.2,
+              ),
+              landscapeLayout: BottomNavigationBarLandscapeLayout.centered,
+              items: [
+                _buildNavItem(
+                  iconPath: AssetsIcons.homeIcon,
+                  label: "Home",
+                  index: 0,
+                  isSvg: false,
+                ),
+                _buildNavItem(
+                  iconPath: AssetsIcons.analyzeIcon,
+                  label: "Monitor",
+                  index: 1,
+                  isSvg: false,
+                ),
+                _buildNavItem(
+                  iconPath: AssetsIcons.chartIcon,
+                  label: "Analysis",
+                  index: 2,
+                  isSvg: false,
+                ),
+                _buildNavItem(
+                  iconPath: AssetsIcons.congnitiveIcon,
+                  label: "Therapy",
+                  index: 3,
+                  isSvg: false,
+                ),
+                _buildNavItem(
+                  iconPath: AssetsIcons.personIcon,
+                  label: "Profile",
+                  index: 4,
+                  isSvg: false,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return WillPopScope(
-//       onWillPop: () async {
-//         showMaterialDialog(context);
-//         return false;
-//       },
-//       child: Scaffold(
-//         backgroundColor: AppColors.c1B1B1B,
-//         extendBody: true,
-//         body: _screens[_currentIndex],
-//         bottomNavigationBar: Container(
-//           decoration: BoxDecoration(
-//             color: AppColors.c1B1B1B,
-//             boxShadow: [
-//               BoxShadow(
-//                 color: Colors.black.withAlpha((0.1 * 255).toInt()),
-//                 spreadRadius: 5,
-//                 blurRadius: 10,
-//                 offset: Offset(0, 0),
-//               ),
-//             ],
-//           ),
-//           child: BottomNavigationBar(
-//             elevation: 0,
-//             backgroundColor: Colors.transparent,
-//             currentIndex: _currentIndex,
-//             onTap: (index) {
-//               log("----------------index--$index");
-//               setState(() => _currentIndex = index);
-//             },
-//             type: BottomNavigationBarType.fixed,
-//             selectedItemColor: AppColors.cFFFFFF,
-//             unselectedItemColor: AppColors.c8B8A8C,
-//             selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w700),
-//             unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500),
-//             items: [
-//               _buildNavItem(
-//                 iconPath: AssetsIcons.homeIcon1,
-//                 label: "News Feed",
-//                 index: 0,
-//                 isSvg: false,
-//               ),
-//               _buildNavItem(
-//                 iconPath: AssetsIcons.messageIcon,
-//                 label: "Whyspers",
-//                 index: 1,
-//                 isSvg: true,
-//               ),
-//               _buildNavItem(
-//                 iconPath: AssetsIcons.addIcon,
-//                 label: "Add",
-//                 index: 2,
-//                 isSvg: false,
-//               ),
-//               _buildNavItem(
-//                 iconPath: AssetsIcons.vaultIcon,
-//                 label: "Vault",
-//                 index: 3,
-//                 isSvg: false,
-//               ),
-//               _buildNavItem(
-//                 iconPath: AssetsIcons.homeScreenSettingIcon,
-//                 label: "Settings",
-//                 index: 4,
-//                 isSvg: false,
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
+  BottomNavigationBarItem _buildNavItem({
+    required String iconPath,
+    required String label,
+    required int index,
+    required bool isSvg,
+  }) {
+    final bool isSelected = _currentIndex == index;
+    final Color color = isSelected
+        ? const Color(0xFFFF5A1F)
+        : const Color(0xFF8B8A8C);
 
-//   /// Cleaned-up helper for BottomNavigationBarItem
-//   BottomNavigationBarItem _buildNavItem({
-//     required String iconPath,
-//     required String label,
-//     required int index,
-//     required bool isSvg,
-//   }) {
-//     final color = _currentIndex == index ? AppColors.cFFFFFF : AppColors.c8B8A8C;
+    Widget iconWidget;
 
-//     Widget iconWidget;
-//     if (isSvg) {
-//       iconWidget = SvgPicture.asset(
-//         iconPath,
-//         height: 24.h,
-//         width: 24.w,
-//         color: color,
-//       );
-//     } else {
-//       iconWidget = Image.asset(
-//         iconPath,
-//         height: 24.h,
-//         width: 24.w,
-//         color: color,
-//       );
-//     }
+    if (isSvg) {
+      iconWidget = Padding(
+        padding: EdgeInsets.only(top: 6.h, bottom: 4.h),
+        child: SvgPicture.asset(
+          iconPath,
+          height: 22.h,
+          width: 22.w,
+          colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+        ),
+      );
+    } else {
+      iconWidget = Padding(
+        padding: EdgeInsets.only(top: 6.h, bottom: 4.h),
+        child: Image.asset(
+          iconPath,
+          height: 22.h,
+          width: 22.w,
+          color: color,
+        ),
+      );
+    }
 
-//     return BottomNavigationBarItem(
-//       icon: iconWidget,
-//       label: label,
-//     );
-//   }
-// }
+    return BottomNavigationBarItem(
+      icon: iconWidget,
+      activeIcon: isSvg
+          ? Padding(
+              padding: EdgeInsets.only(top: 6.h, bottom: 4.h),
+              child: SvgPicture.asset(
+                iconPath,
+                height: 22.h,
+                width: 22.w,
+                colorFilter: const ColorFilter.mode(
+                  Color(0xFFFF5A1F),
+                  BlendMode.srcIn,
+                ),
+              ),
+            )
+          : Padding(
+              padding: EdgeInsets.only(top: 6.h, bottom: 4.h),
+              child: Image.asset(
+                iconPath,
+                height: 22.h,
+                width: 22.w,
+                color: const Color(0xFFFF5A1F),
+              ),
+            ),
+      label: label,
+    );
+  }
+}
