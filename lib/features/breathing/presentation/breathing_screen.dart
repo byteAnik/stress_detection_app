@@ -144,7 +144,7 @@ class _BreathingScreenState extends State<BreathingScreen>
   String formatTime(int sec) {
     int min = sec ~/ 60;
     int s = sec % 60;
-    return "${min}:${s.toString().padLeft(2, '0')}";
+    return "$min:${s.toString().padLeft(2, '0')}";
   }
 
   @override

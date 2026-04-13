@@ -8,6 +8,7 @@ import 'package:stress_detection_app/constants/app_colors.dart';
 import 'package:stress_detection_app/features/auth/otp_verify/presentation/otp_verify_screen.dart';
 import 'package:stress_detection_app/features/auth/signup/presentation/signup_screen.dart';
 import 'package:stress_detection_app/helpers/ui_helpers.dart';
+import 'package:stress_detection_app/navigation_bar.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -138,7 +139,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
 
                 UIHelper.verticalSpace(25.h),
-                CommonButton(text: 'Sing In', onPressed: () {}),
+                CommonButton(
+                  text: 'Sing In',
+                  onPressed: () {
+                    Get.to(() => NavigationBarScreen());
+                  },
+                ),
                 UIHelper.verticalSpace(25.h),
                 Row(
                   children: [

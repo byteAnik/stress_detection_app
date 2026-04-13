@@ -12,9 +12,9 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.c0B0B0F,
-      body: SafeArea(
+    return Container(
+      color: AppColors.c0B0B0F,
+      child: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: UIHelper.kDefaulutPadding(),
@@ -36,14 +36,6 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: const Color(0xFFFF5722),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.r),
-        ),
-        child: Icon(Icons.add, color: Colors.white, size: 32.sp),
       ),
     );
   }

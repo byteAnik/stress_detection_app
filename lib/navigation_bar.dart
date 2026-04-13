@@ -10,6 +10,8 @@ import 'package:stress_detection_app/features/monitoring/presentation/monitoring
 import 'package:stress_detection_app/features/profile/presentation/profile_screen.dart';
 import 'package:stress_detection_app/helpers/helper_methods.dart';
 import 'package:svg_flutter/svg.dart';
+import 'package:stress_detection_app/features/home/presentation/widgets/quick_actions_bottom_sheet.dart';
+import 'package:stress_detection_app/features/profile/presentation/widgets/help_support_bottom_sheet.dart';
 
 class NavigationBarScreen extends StatefulWidget {
   final int? pageNum;
@@ -23,11 +25,11 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
   late int _currentIndex;
 
   final List<Widget> _screens = [
-    HomeScreen(),
+    const HomeScreen(),
     MonitoringScreen(),
     AnalyticsScreen(),
     BreathingScreen(),
-    ProfileScreen(),
+    const ProfileScreen(),
   ];
 
   @override
@@ -47,14 +49,48 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
         backgroundColor: AppColors.c1B1B1B,
         extendBody: true,
         body: _screens[_currentIndex],
+        floatingActionButton: _currentIndex == 0
+            ? FloatingActionButton(
+                onPressed: () {
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    builder: (context) => const QuickActionsBottomSheet(),
+                  );
+                },
+                backgroundColor: const Color(0xFFFF5722),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.r),
+                ),
+                child: Icon(Icons.add, color: Colors.white, size: 32.sp),
+              )
+            : _currentIndex == 4
+                ? FloatingActionButton(
+                    onPressed: () {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        builder: (context) => const HelpSupportBottomSheet(),
+                      );
+                    },
+                    backgroundColor: Colors.deepOrange,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16.r),
+                    ),
+                    child: Image.asset(
+                      AssetsIcons.questionMarkIcon,
+                      height: 20.h,
+                      width: 20.w,
+                    ),
+                  )
+                : null,
         bottomNavigationBar: Container(
           decoration: BoxDecoration(
             color: AppColors.c1B1B1B,
             border: Border(
-              top: BorderSide(
-                color: const Color(0xFF2A2A2A),
-                width: 1,
-              ),
+              top: BorderSide(color: const Color(0xFF2A2A2A), width: 1),
             ),
             boxShadow: [
               BoxShadow(
@@ -142,9 +178,8 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
     required bool isSvg,
   }) {
     final bool isSelected = _currentIndex == index;
-    final Color color = isSelected
-        ? const Color(0xFFFF5A1F)
-        : const Color(0xFF8B8A8C);
+    final Color color =
+        isSelected ? const Color(0xFFFF5A1F) : const Color(0xFF8B8A8C);
 
     Widget iconWidget;
 
@@ -161,39 +196,35 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
     } else {
       iconWidget = Padding(
         padding: EdgeInsets.only(top: 6.h, bottom: 4.h),
-        child: Image.asset(
-          iconPath,
-          height: 22.h,
-          width: 22.w,
-          color: color,
-        ),
+        child: Image.asset(iconPath, height: 22.h, width: 22.w, color: color),
       );
     }
 
     return BottomNavigationBarItem(
       icon: iconWidget,
-      activeIcon: isSvg
-          ? Padding(
-              padding: EdgeInsets.only(top: 6.h, bottom: 4.h),
-              child: SvgPicture.asset(
-                iconPath,
-                height: 22.h,
-                width: 22.w,
-                colorFilter: const ColorFilter.mode(
-                  Color(0xFFFF5A1F),
-                  BlendMode.srcIn,
+      activeIcon:
+          isSvg
+              ? Padding(
+                padding: EdgeInsets.only(top: 6.h, bottom: 4.h),
+                child: SvgPicture.asset(
+                  iconPath,
+                  height: 22.h,
+                  width: 22.w,
+                  colorFilter: const ColorFilter.mode(
+                    Color(0xFFFF5A1F),
+                    BlendMode.srcIn,
+                  ),
+                ),
+              )
+              : Padding(
+                padding: EdgeInsets.only(top: 6.h, bottom: 4.h),
+                child: Image.asset(
+                  iconPath,
+                  height: 22.h,
+                  width: 22.w,
+                  color: const Color(0xFFFF5A1F),
                 ),
               ),
-            )
-          : Padding(
-              padding: EdgeInsets.only(top: 6.h, bottom: 4.h),
-              child: Image.asset(
-                iconPath,
-                height: 22.h,
-                width: 22.w,
-                color: const Color(0xFFFF5A1F),
-              ),
-            ),
       label: label,
     );
   }

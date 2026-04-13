@@ -34,9 +34,9 @@ class ProfileScreen extends StatelessWidget {
       {"icon": Icons.help_outline_rounded, "title": "Help & Support"},
     ];
 
-    return Scaffold(
-      backgroundColor: AppColors.c0B0B0F,
-      body: SafeArea(
+    return Container(
+      color: AppColors.c0B0B0F,
+      child: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: UIHelper.kDefaulutPadding(),
@@ -250,7 +250,7 @@ class ProfileScreen extends StatelessWidget {
                               Switch(
                                 value: switchValue,
                                 onChanged: (v) {},
-                                activeColor: Colors.white,
+                                activeThumbColor: Colors.white,
                                 activeTrackColor: Colors.deepOrange,
                               )
                             else
@@ -295,18 +295,6 @@ class ProfileScreen extends StatelessWidget {
               ],
             ),
           ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: Colors.deepOrange,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.r),
-        ),
-        child: Image.asset(
-          AssetsIcons.questionMarkIcon,
-          height: 20.h,
-          width: 20.w,
         ),
       ),
     );
