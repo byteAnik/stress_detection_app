@@ -12,4 +12,9 @@ class AssetsIcons {
   static String questionMarkIcon = 'assets/icons/question_mark_icon.png';
 
   static String dark = 'assets/icons/dark.png';
+  static String homeIcon = 'assets/icons/home_icon.png';
+  static String statisticIcon = 'assets/icons/statistic_icon.png';
+  static String congnitiveIcon = 'assets/icons/cognitive_icon.png';
+  static String chartIcon = 'assets/icons/chart_icon.png';
+  static String analyzeIcon = 'assets/icons/analyze_icon.png';
 }

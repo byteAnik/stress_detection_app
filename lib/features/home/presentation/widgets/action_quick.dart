@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/route_manager.dart';
-import 'package:get/state_manager.dart';
 import 'package:stress_detection_app/features/recommenntdation/presentation/recommentdation_screen.dart';
+import 'package:stress_detection_app/features/report/presentation/report_screen.dart';
 import 'package:stress_detection_app/helpers/ui_helpers.dart';
 
 class ActionQuick extends StatelessWidget {
@@ -58,6 +58,7 @@ class ActionQuick extends StatelessWidget {
                 onTap: () {
                   if (index == 0) {
                   } else if (index == 1) {
+                    Get.to(() => ReportScreen());
                   } else if (index == 2) {
                     Get.to(() => RecommentdationScreen());
                   }
